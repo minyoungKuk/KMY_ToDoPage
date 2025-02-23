@@ -19,7 +19,7 @@ const DraggableBoard = ({ board, index }: DraggableBoardProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="p-4 bg-gray-100 rounded-md shadow-md w-80 min-h-[200px] flex flex-col"
+          className="p-4 bg-gray-100 rounded-md shadow-md w-80 min-h-[200px] flex flex-col flex-grow"
         >
           <h3 className="font-bold mb-2">{board.name}</h3>
 

@@ -14,7 +14,7 @@ interface DraggableTodoProps {
 const DraggableTodo = ({ todo, index }: DraggableTodoProps) => {
   const { deleteTodo } = useBoardStore();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [editMode, setEditMode] = useState(false);
+  // const [editMode, setEditMode] = useState(false);
 
   const handleDelete = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -38,13 +38,15 @@ const DraggableTodo = ({ todo, index }: DraggableTodoProps) => {
           </div>
         )}
       </Draggable>
-      <TodoDrawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        editTodo={todo} // ✅ 클릭된 Todo 정보를 모달에 전달
-        onEdit={() => setEditMode(true)}
-        onDelete={handleDelete}
-      />
+      {!isDrawerOpen || (
+        <TodoDrawer
+          isOpen={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+          editTodo={todo} // ✅ 클릭된 Todo 정보를 모달에 전달
+          // onEdit={() => setEditMode(true)}
+          onDelete={handleDelete}
+        />
+      )}
     </>
   );
 };
