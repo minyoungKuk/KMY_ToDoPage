@@ -10,7 +10,15 @@ const HomeClient = () => {
 
   return (
     <>
-      <Button onClick={() => setIsTodoDrawerOpen(true)}>일정 추가</Button>
+      <div className="w-full flex justify-end">
+        <Button
+          size="md"
+          variant="secondary"
+          onClick={() => setIsTodoDrawerOpen(true)}
+        >
+          일정 추가
+        </Button>
+      </div>
       <DragBoardContainer />
       <TodoDrawer
         isOpen={isTodoDrawerOpen}

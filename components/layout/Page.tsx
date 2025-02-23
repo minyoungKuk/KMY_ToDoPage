@@ -1,12 +1,10 @@
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "@/constants";
 import { PropsWithChildren } from "react";
 
 const Page = ({ children }: PropsWithChildren) => {
-  const HEADER_HEIGHT = 60;
-  const FOOTER_HEIGHT = 60;
-
   return (
     <main
-      className="w-full max-w-[800px] mx-auto"
+      className="p-4 w-full max-w-[800px] min-w-[340px] mx-auto md:px-0 box-border"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}
     >
       {children}

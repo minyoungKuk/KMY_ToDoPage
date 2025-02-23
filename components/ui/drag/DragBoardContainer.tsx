@@ -46,7 +46,7 @@ const DragBoardContainer = () => {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="flex gap-4 overflow-auto w-full min-h-[80vh] py-4"
+            className="flex flex-col gap-4 overflow-auto w-full min-h-[80vh] py-4 md:flex-row"
           >
             {boards?.map((board, index) => (
               <DraggableBoard key={board.id} board={board} index={index} />

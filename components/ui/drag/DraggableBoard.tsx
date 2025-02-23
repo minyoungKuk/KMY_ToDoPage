@@ -10,7 +10,9 @@ interface DraggableBoardProps {
 
 const DraggableBoard = ({ board, index }: DraggableBoardProps) => {
   const { todos } = useBoardStore();
-  const boardTodos = todos.filter((todo) => board.todoIds.includes(todo.id));
+  const boardTodos = todos
+    .filter((todo) => board.todoIds.includes(todo.id))
+    .sort((a, b) => Number(a.isCompleted) - Number(b.isCompleted));
 
   return (
     <Draggable draggableId={board.id} index={index}>
@@ -19,7 +21,7 @@ const DraggableBoard = ({ board, index }: DraggableBoardProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="p-4 bg-gray-100 rounded-md shadow-md w-80 min-h-[200px] flex flex-col flex-grow"
+          className="w-full px-2 py-4 bg-slate-100 rounded-md shadow-md md:w-80 min-h-[200px] flex flex-col flex-grow"
         >
           <h3 className="font-bold mb-2">{board.name}</h3>
 
@@ -35,7 +37,10 @@ const DraggableBoard = ({ board, index }: DraggableBoardProps) => {
                     <DraggableTodo key={todo.id} todo={todo} index={i} />
                   ))
                 ) : (
-                  <p className="text-gray-400 text-sm">할 일이 없습니다.</p>
+                  <p className="h-full text-gray-400 text-sm flex items-center justify-center">
+                    할 일이 없습니다. <br />
+                    일정을 추가해주세요.
+                  </p>
                 )}
                 {dropProvided.placeholder}
               </div>
