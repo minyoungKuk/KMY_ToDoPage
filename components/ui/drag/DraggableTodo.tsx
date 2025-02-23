@@ -19,7 +19,6 @@ const formatDate = (dateString: string) => {
 const DraggableTodo = ({ todo, index }: DraggableTodoProps) => {
   const { deleteTodo, updateTodo } = useBoardStore();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  // const [editMode, setEditMode] = useState(false);
 
   const toggleCompleted = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
@@ -74,8 +73,6 @@ const DraggableTodo = ({ todo, index }: DraggableTodoProps) => {
             <div className="mt-2 text-sm">
               {todo.startDate && <p>시작일: {formatDate(todo.startDate)}</p>}
               {todo.dueDate && <p>마감일: {formatDate(todo.dueDate)}</p>}
-
-              <p></p>
             </div>
           </div>
         )}

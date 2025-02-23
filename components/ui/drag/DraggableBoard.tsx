@@ -1,5 +1,6 @@
 import { useBoardStore } from "@/features/store/boardStore";
 import { Board } from "@/types/board";
+import { Todo } from "@/types/todo";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import DraggableTodo from "./DraggableTodo";
 
@@ -10,9 +11,9 @@ interface DraggableBoardProps {
 
 const DraggableBoard = ({ board, index }: DraggableBoardProps) => {
   const { todos } = useBoardStore();
-  const boardTodos = todos
-    .filter((todo) => board.todoIds.includes(todo.id))
-    .sort((a, b) => Number(a.isCompleted) - Number(b.isCompleted));
+  const boardTodos = board.todoIds
+    .map((id) => todos.find((todo) => todo.id === id))
+    .filter(Boolean) as Todo[];
 
   return (
     <Draggable draggableId={board.id} index={index}>

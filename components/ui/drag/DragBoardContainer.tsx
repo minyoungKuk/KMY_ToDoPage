@@ -2,21 +2,14 @@
 
 import { useBoardStore } from "@/features/store/boardStore";
 import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
-import { useEffect } from "react";
 import DraggableBoard from "./DraggableBoard";
 
 const DragBoardContainer = () => {
   const { boards, reorderBoard, reorderTodo, moveTodo } = useBoardStore();
 
-  useEffect(() => {
-    console.log("현재 board:", boards);
-  }, [boards]);
-
   const handleDargEnd = (data: DropResult) => {
     const { source, destination, type } = data;
     if (!destination) return;
-
-    console.log("드래그 종료:", { source, destination, type });
 
     if (type === "BOARD") {
       if (source.index !== destination.index) {

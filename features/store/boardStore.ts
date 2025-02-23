@@ -94,9 +94,14 @@ export const useBoardStore = create<BoardStore>((set) => ({
       const updatedBoards = state.boards.map((b) =>
         b.id === boardId ? { ...b, todoIds: updatedTodoIds } : b
       );
+      const updatedTodos = updatedTodoIds
+        .map((id) => state.todos.find((todo) => todo.id === id))
+        .filter(Boolean) as Todo[];
 
       localStorage.setItem("boards", JSON.stringify(updatedBoards));
-      return { boards: updatedBoards };
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
+
+      return { boards: updatedBoards, todos: updatedTodos };
     });
   },
 
@@ -158,9 +163,11 @@ export const useLoadStoredData = () => {
   const { setBoards, setTodos } = useBoardStore();
 
   useEffect(() => {
-    const storedBoards = JSON.parse(localStorage.getItem("boards") || "null");
-    const storedTodos = JSON.parse(localStorage.getItem("todos") || "[]");
-    if (storedBoards) setBoards(storedBoards);
-    if (storedTodos) setTodos(storedTodos);
+    if (typeof window !== "undefined") {
+      const storedBoards = JSON.parse(localStorage.getItem("boards") || "null");
+      const storedTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+      if (storedBoards) setBoards(storedBoards);
+      if (storedTodos) setTodos(storedTodos);
+    }
   }, [setBoards, setTodos]);
 };

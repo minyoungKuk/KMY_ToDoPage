@@ -42,15 +42,24 @@ const TodoDrawer = ({
       );
       setPriority(editTodo.priority || 1);
       setIsFavorite(editTodo.isFavorite || false);
+    } else {
+      setTitle("");
+      setCategory("요청");
+      setTag("");
+      setMemo("");
+      setStartDate(new Date().toISOString());
+      setDueDate(new Date().toISOString());
+      setPriority(1);
+      setIsFavorite(false);
     }
-  }, [editTodo]);
+  }, [editTodo, isOpen]);
 
   useEffect(() => {
     setDueDate(startDate);
   }, [startDate]);
 
   const handleSubmit = () => {
-    if (!title) return alert("제목을 입력해주세요");
+    if (!title.trim()) return alert("제목을 입력해주세요");
 
     const newTodo: Omit<Todo, "id" | "createdAt" | "updatedAt"> = {
       title,

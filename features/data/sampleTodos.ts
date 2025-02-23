@@ -2,7 +2,7 @@ import { Todo } from "@/types/todo";
 
 export const sampleTodos: Todo[] = [
   {
-    id: "todo-1",
+    id: crypto.randomUUID(),
     title: "기능 구현 시작",
     priority: 1,
     category: "요청",
@@ -11,7 +11,7 @@ export const sampleTodos: Todo[] = [
     updatedAt: new Date().toISOString(),
   },
   {
-    id: "todo-2",
+    id: crypto.randomUUID(),
     title: "UI 디자인 수정",
     category: "진행중",
     isCompleted: false,
@@ -19,7 +19,7 @@ export const sampleTodos: Todo[] = [
     updatedAt: new Date().toISOString(),
   },
   {
-    id: "todo-2",
+    id: crypto.randomUUID(),
     title: "스터디 참여",
     category: "진행중",
     isCompleted: false,
