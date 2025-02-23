@@ -55,6 +55,13 @@ const TodoDrawer = ({ isOpen, onClose, editTodo }: TodoDrawerProps) => {
         addTodo(newTodo);
       }
       setTitle("");
+      setTag("");
+      setMemo("");
+      setStartDate(new Date().toISOString());
+      setDueDate(new Date().toISOString());
+      setPriority(1);
+      setIsFavorite(false);
+
       onClose();
     },
     [

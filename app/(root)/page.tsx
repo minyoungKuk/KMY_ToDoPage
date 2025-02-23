@@ -1,9 +1,9 @@
-import DragBoardContainer from "@/components/ui/drag/DragBoardContainer";
+import HomeClient from "@/views/HomeClient";
 
 const HomePage = () => {
   return (
     <>
-      <DragBoardContainer />
+      <HomeClient />
     </>
   );
 };

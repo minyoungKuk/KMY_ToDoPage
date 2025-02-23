@@ -60,8 +60,15 @@ export const useBoardStore = create<BoardStore>((set) => ({
     };
     set((state) => {
       const updatedTodos = [...state.todos, todoWithDefaults];
+      const updatedBoards = state.boards.map((board) =>
+        board.name === todoWithDefaults.category
+          ? { ...board, todoIds: [...board.todoIds, todoWithDefaults.id] }
+          : board
+      );
       localStorage.setItem("todos", JSON.stringify(updatedTodos));
-      return { todos: updatedTodos };
+      localStorage.setItem("boards", JSON.stringify(updatedBoards));
+
+      return { todos: updatedTodos, boards: updatedBoards };
     });
   },
 
